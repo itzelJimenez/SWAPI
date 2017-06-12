@@ -11,8 +11,8 @@
 				console.log("response", response);
 				var personajes = response.results;
 				var total = response.count;
-				mostrarPersonaje(total);
 				mostrarPersonaje(personajes);
+				mostrarTotal(total);
 			},
 			error: function(error){
 				 console.log("error", error)
@@ -21,13 +21,14 @@
 	};
 	var mostrarPersonaje = function(personajes){
 		var $ul = $('#personajes');
+		console.log(personajes);
 				personajes.forEach(function (personaje){
 					var $li = $("<li />");
 					$li.text(personaje.name + " - " + personaje.height);
 					$ul.append($li)
 				});
 	}
-	var mostrarPersonaje = function(total){
+	var mostrarTotal = function(total){
 		$('#total').text(total);
 	}
 	$(document).ready(cargarPagina);
