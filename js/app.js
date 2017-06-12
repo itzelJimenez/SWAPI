@@ -4,24 +4,19 @@
 	}
 
 	var cargarPersonajes = function () {
-		$.ajax('http://swapi.co/api/people', {
-			method: 'GET',
-			dataType: 'json',
-			success: function(response){
-				console.log("response", response);
-				var personajes = response.results;
-				var total = response.count;
-				mostrarPersonaje(personajes);
-				mostrarTotal(total);
-			},
-			error: function(error){
-				 console.log("error", error)
-			}
+		var url = 'http://swapi.co/api/people/';
+		$.get(url, function (response) {
+			console.log(response);
+			var personajes = response.results;
+			var total = response.count;
+			mostrarPersonaje(personajes);
+			mostrarTotal(total);
 		});
+		
 	};
 	var mostrarPersonaje = function(personajes){
 		var $ul = $('#personajes');
-		console.log(personajes);
+		
 				personajes.forEach(function (personaje){
 					var $li = $("<li />");
 					$li.text(personaje.name + " - " + personaje.height);
